@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Smile\ElasticsuiteCatalogRule\Model\Rule\Condition\Product\SpecialAttributesProvider">
+        <arguments>
+            <argument name="attributes" xsi:type="array">
+                <item name="is_new" xsi:type="object">MageSuite\ElasticSuiteAddons\Rule\Condition\Product\SpecialAttribute\IsNew</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <preference for="Smile\ElasticsuiteCms\Model\Page\Indexer\Fulltext\Action\Full"
+                type="MageSuite\ElasticSuiteAddons\Model\Page\Indexer\Fulltext\Action\Full" />
+</config>
