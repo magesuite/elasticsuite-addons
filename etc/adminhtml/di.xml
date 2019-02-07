@@ -7,5 +7,9 @@
                 type="\MageSuite\ElasticSuiteAddons\Plugin\Catalog\Block\Adminhtml\Product\Attribute\Edit\Tab\Front\SliderDisplayMode"
                 sortOrder="150"
         />
+        <plugin name="display_attribute_search_box"
+                type="\MageSuite\ElasticSuiteAddons\Plugin\Catalog\Block\Adminhtml\Product\Attribute\Edit\Tab\Front\DisplaySearchbox"
+                sortOrder="160"
+        />
     </type>
 </config>
