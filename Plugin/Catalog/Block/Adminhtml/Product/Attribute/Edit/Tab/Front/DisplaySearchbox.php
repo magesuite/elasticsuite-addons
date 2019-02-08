@@ -5,16 +5,6 @@ class DisplaySearchbox
 {
     const ELASTICSUITE_FIELDSET = 'elasticsuite_catalog_attribute_fieldset';
 
-    /**
-     * @var \Magento\Config\Model\Config\Source\Yesno
-     */
-    protected $yesNoSource;
-
-    public function __construct(\Magento\Config\Model\Config\Source\Yesno $yesNoSource)
-    {
-        $this->yesNoSource = $yesNoSource;
-    }
-
     public function aroundSetForm(\Magento\Catalog\Block\Adminhtml\Product\Attribute\Edit\Tab\Front $subject, \Closure $proceed, \Magento\Framework\Data\Form $form)
     {
         $block = $proceed($form);
@@ -57,7 +47,10 @@ class DisplaySearchbox
                 'name' => 'display_searchbox',
                 'label' => __('Display Search Box'),
                 'note' => __('Decides if search box should be displayed alongside "Show more" button when there are more filters than defined in Facet max. size setting.'),
-                'values' => $this->yesNoSource->toOptionArray(),
+                'values' => [
+                    ['value' => '1', 'label' => __('Yes')],
+                    ['value' => '0', 'label' => __('No')]
+                ],
                 'value' => '1'
             ],
             'facet_sort_order'
