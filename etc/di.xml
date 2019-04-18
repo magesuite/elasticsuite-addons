@@ -7,7 +7,4 @@
             </argument>
         </arguments>
     </type>
-
-    <preference for="Smile\ElasticsuiteCms\Model\Page\Indexer\Fulltext\Action\Full"
-                type="MageSuite\ElasticSuiteAddons\Model\Page\Indexer\Fulltext\Action\Full" />
 </config>
