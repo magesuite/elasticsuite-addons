@@ -7,4 +7,12 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Smile\ElasticsuiteCatalogOptimizer\Model\ResourceModel\Optimizer\Config\Attributes\Collection">
+        <arguments>
+            <argument name="availableBackendTypes" xsi:type="array">
+                <item name="int" xsi:type="string">int</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
