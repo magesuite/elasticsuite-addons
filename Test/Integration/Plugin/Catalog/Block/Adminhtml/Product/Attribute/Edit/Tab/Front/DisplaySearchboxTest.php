@@ -17,7 +17,7 @@ class DisplaySearchboxTest extends \PHPUnit\Framework\TestCase
      */
     protected $eavConfig;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
         $this->eavConfig = $this->objectManager->get(\Magento\Eav\Model\Config::class);
