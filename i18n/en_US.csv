@@ -1,0 +1,11 @@
+"Display Search Box","Display Search Box"
+"Decides if search box should be displayed alongside ""Show more"" button when there are more filters than defined in Facet max. size setting.","Decides if search box should be displayed alongside ""Show more"" button when there are more filters than defined in Facet max. size setting."
+Yes,Yes
+No,No
+"Slider Display Configuration","Slider Display Configuration"
+"Display Mode","Display Mode"
+"Tells which elements will be displayed to the user on the storefront for selecting a range of values for this attribute.","Tells which elements will be displayed to the user on the storefront for selecting a range of values for this attribute."
+"Inputs with slider","Inputs with slider"
+"Inputs only","Inputs only"
+"Slider only","Slider only"
+"Only new products","Only new products"
