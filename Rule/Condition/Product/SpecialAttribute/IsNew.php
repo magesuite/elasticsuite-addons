@@ -48,7 +48,7 @@ class IsNew implements SpecialAttributeInterface
     /**
      * {@inheritdoc}
      */
-    public function getSearchQuery()
+    public function getSearchQuery(\Smile\ElasticsuiteCatalogRule\Model\Rule\Condition\Product $condition)
     {
         $now = (new \DateTime())->format(\Magento\Framework\Stdlib\DateTime::DATETIME_PHP_FORMAT);
 
