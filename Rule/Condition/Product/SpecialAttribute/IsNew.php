@@ -112,7 +112,7 @@ class IsNew implements SpecialAttributeInterface
     /**
      * {@inheritdoc}
      */
-    public function getValueName()
+    public function getValueName($value = null)
     {
         return ' ';
     }
@@ -120,7 +120,7 @@ class IsNew implements SpecialAttributeInterface
     /**
      * {@inheritdoc}
      */
-    public function getValue()
+    public function getValue($value = null)
     {
         return 1;
     }
