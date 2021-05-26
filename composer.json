@@ -2,6 +2,9 @@
   "name": "creativestyle/magesuite-elasticsuite-addons",
   "description": "Addons for elasticsuite extension",
   "type": "magento2-module",
+  "require": {
+     "creativestyle/magesuite-autocomplete": "^1.0.0"
+  },
   "autoload": {
     "files": [
       "registration.php"
