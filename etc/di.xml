@@ -19,11 +19,4 @@
     <type name="Magento\Framework\Search\SearchEngineInterface">
         <plugin name="add_all_docs_ids_to_cache_tags" type="MageSuite\ElasticSuiteAddons\Plugin\Framework\Search\SearchEngine\AddAllDocIdsToCacheTags"/>
     </type>
-
-    <type name="Smile\ElasticsuiteCore\Search\Request\Builder">
-        <plugin
-            name="inject_suggested_terms_as_search_phrase"
-            type="MageSuite\ElasticSuiteAddons\Plugin\Smile\ElasticsuiteCore\Search\Request\Builder\InjectSuggestedTermsAsSearchPhrase"
-        />
-    </type>
 </config>
