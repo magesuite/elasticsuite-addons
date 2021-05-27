@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <smile_elasticsuite_catalogsearch_settings>
+            <catalogsearch>
+                <inject_suggested_phrases_when_no_results_are_found>1</inject_suggested_phrases_when_no_results_are_found>
+                <always_inject_suggested_phrases>0</always_inject_suggested_phrases>
+                <maximum_amount_of_products_that_trigger_phrase_injection>10</maximum_amount_of_products_that_trigger_phrase_injection>
+            </catalogsearch>
+        </smile_elasticsuite_catalogsearch_settings>
+    </default>
+</config>
