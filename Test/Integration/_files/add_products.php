@@ -1,6 +1,6 @@
 <?php
 
-\Magento\TestFramework\Workaround\Override\Fixture\Resolver::getInstance()->requireDataFixture('Magento/Catalog/_files/category.php');
+include BP.'/dev/tests/integration/testsuite/Magento/Catalog/_files/category.php';
 
 /** @var \Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement */
 $categoryLinkManagement = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
