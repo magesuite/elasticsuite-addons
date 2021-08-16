@@ -42,7 +42,7 @@ class RemoveGhostIndices
         foreach ($this->client->getIndexAliases() as $indexName => $aliases) {
             $alias = $aliases ? key($aliases['aliases']) : null;
 
-            if (!$alias || !$this->isElasticSuiteIndex($indexName) || $this->isExternalIndex($indexName)) {
+            if (!empty($alias) || !$this->isElasticSuiteIndex($indexName) || $this->isExternalIndex($indexName)) {
                 continue;
             }
 
