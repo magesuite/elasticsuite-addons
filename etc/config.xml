@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
+        <catalog>
+            <catalog_filters>
+                <min_options_qty>0</min_options_qty>
+            </catalog_filters>
+        </catalog>
         <smile_elasticsuite_catalogsearch_settings>
             <catalogsearch>
                 <inject_suggested_phrases_when_no_results_are_found>1</inject_suggested_phrases_when_no_results_are_found>
