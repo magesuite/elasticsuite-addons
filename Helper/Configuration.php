@@ -6,6 +6,8 @@ class Configuration
 {
     const ELASTICSUITE_SEARCH_SETTINGS_XML_PATH = 'smile_elasticsuite_catalogsearch_settings/catalogsearch';
 
+    public const MIN_OPTIONS_QTY_TO_SHOW_FILTERS = 'catalog/catalog_filters/min_options_qty';
+
     protected $config;
 
     /**
@@ -49,4 +51,10 @@ class Configuration
 
         return $this->config;
     }
+
+    public function getMinOptionsQtyToShowFilters()
+    {
+        return $this->scopeConfig->getValue(self::MIN_OPTIONS_QTY_TO_SHOW_FILTERS, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    }
+
 }

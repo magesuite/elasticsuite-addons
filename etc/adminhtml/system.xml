@@ -1,5 +1,18 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
+        <section id="catalog" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Catalog</label>
+            <tab>magesuite</tab>
+            <resource>MageSuite_ElasticSuiteAddons::config_catalog_filters</resource>
+            <group id="catalog_filters" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Catalog Filters</label>
+                <field id="min_options_qty" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Minimum filter options qty to show filter</label>
+                    <frontend_class>cs-csfeature__logo</frontend_class>
+                    <comment>Hide filters if filter options qty less then X</comment>
+                </field>
+            </group>
+        </section>
         <section id="smile_elasticsuite_catalogsearch_settings" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Catalog Search</label>
             <tab>smile_elasticsuite</tab>
