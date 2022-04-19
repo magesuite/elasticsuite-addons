@@ -8,6 +8,7 @@
                 <label>Catalog Filters</label>
                 <field id="min_options_qty" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Minimum filter options qty to show filter</label>
+                    <frontend_class>cs-csfeature__logo</frontend_class>
                     <comment>Hide filters if filter options qty less then X</comment>
                 </field>
             </group>
