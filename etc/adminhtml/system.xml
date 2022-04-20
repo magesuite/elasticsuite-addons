@@ -2,7 +2,7 @@
     <system>
         <section id="catalog" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Catalog</label>
-            <tab>magesuite</tab>
+            <tab>catalog</tab>
             <resource>MageSuite_ElasticSuiteAddons::config_catalog_filters</resource>
             <group id="catalog_filters" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Catalog Filters</label>
