@@ -1,9 +1,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="catalog" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Catalog</label>
-            <tab>magesuite</tab>
-            <resource>MageSuite_ElasticSuiteAddons::config_catalog_filters</resource>
+        <section id="catalog">
             <group id="catalog_filters" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Catalog Filters</label>
                 <field id="min_options_qty" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
