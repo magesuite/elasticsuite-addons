@@ -42,5 +42,16 @@
                 </field>
             </group>
         </section>
+        <section id="smile_elasticsuite_misc_settings">
+            <group id="routing_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Routing Settings</label>
+                <field id="enable_virtual_category_router" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable ElasticSearch Virtual Category Router</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select Yes if you want categories to be found by url-key (default)]]></comment>
+                    <frontend_class>cs-csfeature__logo</frontend_class>
+                </field>
+            </group>
+        </section>
     </system>
 </config>

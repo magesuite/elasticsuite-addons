@@ -6,6 +6,8 @@ class Configuration
 {
     const ELASTICSUITE_SEARCH_SETTINGS_XML_PATH = 'smile_elasticsuite_catalogsearch_settings/catalogsearch';
 
+    const ENABLE_VIRTUAL_CATEGORY_ROUTER_XML_PATH = 'smile_elasticsuite_misc_settings/routing_settings/enable_virtual_category_router';
+
     public const MIN_OPTIONS_QTY_TO_SHOW_FILTERS = 'catalog/catalog_filters/min_options_qty';
 
     protected $config;
@@ -38,6 +40,11 @@ class Configuration
         $config = $this->getConfig();
 
         return (boolean)$config['inject_suggested_phrases_when_no_results_are_found'];
+    }
+
+    public function isVirtualCategoryRouterEnabled(): bool
+    {
+        return (bool)$this->scopeConfig->getValue(self::ENABLE_VIRTUAL_CATEGORY_ROUTER_XML_PATH, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
 
     private function getConfig()
