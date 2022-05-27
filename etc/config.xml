@@ -15,7 +15,7 @@
         </smile_elasticsuite_catalogsearch_settings>
         <smile_elasticsuite_misc_settings>
             <routing_settings>
-                <enable_virtual_category_router>1</enable_virtual_category_router>
+                <enable_virtual_category_router>0</enable_virtual_category_router>
             </routing_settings>
         </smile_elasticsuite_misc_settings>
     </default>
