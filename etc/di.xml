@@ -26,4 +26,8 @@
             type="MageSuite\ElasticSuiteAddons\Plugin\Smile\ElasticsuiteCore\Search\Request\Builder\InjectSuggestedTermsAsSearchPhrase"
         />
     </type>
+
+    <type name="Smile\ElasticsuiteVirtualCategory\Controller\Router">
+        <plugin name="disable_virtual_category_router" type="MageSuite\ElasticSuiteAddons\Plugin\Smile\ElasticsuiteVirtualCategory\Controller\Router\DisableElasticSearchVirtualCategoryRouter"/>
+    </type>
 </config>
