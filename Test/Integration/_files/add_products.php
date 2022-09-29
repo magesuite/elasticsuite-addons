@@ -23,6 +23,8 @@ foreach ($products as $data) {
         ->setStockData(['use_config_manage_stock' => 0])
         ->save();
 
+    $product->priceReindexCallback();
+
     $categoryLinkManagement->assignProductToCategories($data['sku'], [333]);
 }
 
