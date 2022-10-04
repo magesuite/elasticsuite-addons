@@ -78,6 +78,8 @@ class RemoveGhostIndices
 
     protected function getUpdatedDateFromIndexName($indexName, $alias)
     {
+        $alias = $alias ?? '';
+
         $matches = [];
         $pattern = $this->indexSettingsHelper->getIndicesPattern();
         preg_match_all('/{{([\w]*)}}/', $pattern, $matches);
