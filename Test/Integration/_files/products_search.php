@@ -20,4 +20,3 @@ $products = [
 ];
 
 include 'add_products.php';
-

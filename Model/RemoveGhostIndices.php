@@ -78,8 +78,6 @@ class RemoveGhostIndices
 
     protected function getUpdatedDateFromIndexName($indexName, $alias)
     {
-        $alias = $alias ?? '';
-
         $matches = [];
         $pattern = $this->indexSettingsHelper->getIndicesPattern();
         preg_match_all('/{{([\w]*)}}/', $pattern, $matches);
@@ -97,20 +95,23 @@ class RemoveGhostIndices
         }
 
         try {
-            $indexName = str_replace($alias, '', $indexName);
-            $date = substr(preg_replace('/[^0-9]/', '', $indexName), -$count);
+            $indexName = str_replace($alias ?? $this->indexSettingsHelper->getIndexAlias(), '', $indexName);
+            $date = preg_replace('/[^0-9]|(?<=[a-zA-Z])[0-9]/', '', $indexName);
 
-            return new \Zend_Date($date, $format);
-        } catch (Zend_Date_Exception $e) {
+            return \DateTime::createFromFormat($format, $date);
+        } catch (\Exception $e) {
             return false;
         }
     }
 
     protected function isGhost($indexDate): bool
     {
-        $date = new \Zend_Date();
-        $date->sub($indexDate);
+        try {
+            $indexDate = ($indexDate instanceof \DateTime) ? $indexDate : new \DateTime();
 
-        return $date->getTimestamp() / 86400 >= self::REMOVE_AFTER_DAYS;
+            return (new \DateTime())->diff($indexDate)->days >= self::REMOVE_AFTER_DAYS;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }
