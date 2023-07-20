@@ -20,8 +20,7 @@ class AddAllDocIdsToCacheTags
     public function __construct(
         \Magento\Framework\View\Layout $layout,
         \Magento\Framework\App\Request\Http $request
-    )
-    {
+    ) {
         $this->layout = $layout;
         $this->request = $request;
     }
@@ -68,5 +67,4 @@ class AddAllDocIdsToCacheTags
 
         return $result;
     }
-
 }

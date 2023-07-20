@@ -24,7 +24,7 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
         $field = 'slider_display_mode';
         $table = $setup->getTable('catalog_eav_attribute');
 
-        if($setup->getConnection()->tableColumnExists($table, $field)){
+        if ($setup->getConnection()->tableColumnExists($table, $field)) {
             return;
         }
 
@@ -46,7 +46,7 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
         $field = 'display_searchbox';
         $table = $setup->getTable('catalog_eav_attribute');
 
-        if($setup->getConnection()->tableColumnExists($table, $field)){
+        if ($setup->getConnection()->tableColumnExists($table, $field)) {
             return;
         }
 

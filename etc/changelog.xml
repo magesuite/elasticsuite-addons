@@ -1,0 +1,16 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:MageSuite_Changelog:etc/changelog.xsd">
+    <module id="Creativestyle_CustomizationPack2GoAheadworks" name="Creativestyle_CustomizationPack2GoAheadworks"
+            description="Customization module for Aheadworks in Pack2Go"
+            url="https://gitlab.creativestyle.pl/pack2go/customization-pack2go-aheadworks">
+        <changelog>
+            <tag version="1.5.2" date="2023-06-14">
+                <entry>
+                    <type>FEAT</type>
+                    <overview>Skip the thesauruses if the search query is too long. Replace long heavy query with a light one</overview>
+                    <ticket_id>P2G-1202</ticket_id>
+                </entry>
+            </tag>
+        </changelog>
+    </module>
+</config>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <section id="smile_elasticsuite_misc_settings">
+        <group id="routing_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Routing Settings</label>
+            <field id="enable_virtual_category_router" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable ElasticSearch Virtual Category Router</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <comment><![CDATA[When enabled ElasticSuite will try to display a virtual category when only part of the URL is matched against the original category URL. <br/>For example when the original category has URL "en/women" then URL en/shirts/women will also display the same category because it will match it based on the "women" part. <br/>Enabling this feature might cause duplicated content and SEO side effects, enable with caution.]]></comment>
+                <frontend_class>cs-csfeature__logo</frontend_class>
+            </field>
+        </group>
+    </section>
+</include>
