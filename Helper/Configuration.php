@@ -4,9 +4,9 @@ namespace MageSuite\ElasticSuiteAddons\Helper;
 
 class Configuration
 {
-    const ELASTICSUITE_SEARCH_SETTINGS_XML_PATH = 'smile_elasticsuite_catalogsearch_settings/catalogsearch';
+    public const ELASTICSUITE_SEARCH_SETTINGS_XML_PATH = 'smile_elasticsuite_catalogsearch_settings/catalogsearch';
 
-    const ENABLE_VIRTUAL_CATEGORY_ROUTER_XML_PATH = 'smile_elasticsuite_misc_settings/routing_settings/enable_virtual_category_router';
+    public const ENABLE_VIRTUAL_CATEGORY_ROUTER_XML_PATH = 'smile_elasticsuite_misc_settings/routing_settings/enable_virtual_category_router';
 
     public const MIN_OPTIONS_QTY_TO_SHOW_FILTERS = 'catalog/catalog_filters/min_options_qty';
 
@@ -17,7 +17,8 @@ class Configuration
      */
     protected $scopeConfig;
 
-    public function __construct(\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface) {
+    public function __construct(\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface)
+    {
         $this->scopeConfig = $scopeConfigInterface;
     }
 
@@ -49,7 +50,7 @@ class Configuration
 
     private function getConfig()
     {
-        if(!$this->config){
+        if (!$this->config) {
             $this->config = $this->scopeConfig->getValue(
                 self::ELASTICSUITE_SEARCH_SETTINGS_XML_PATH,
                 \Magento\Store\Model\ScopeInterface::SCOPE_STORE
@@ -63,5 +64,4 @@ class Configuration
     {
         return $this->scopeConfig->getValue(self::MIN_OPTIONS_QTY_TO_SHOW_FILTERS, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
-
 }

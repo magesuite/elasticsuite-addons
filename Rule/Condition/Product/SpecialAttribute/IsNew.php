@@ -2,10 +2,6 @@
 
 namespace MageSuite\ElasticSuiteAddons\Rule\Condition\Product\SpecialAttribute;
 
-use Smile\ElasticsuiteCatalogRule\Api\Rule\Condition\Product\SpecialAttributeInterface;
-use Smile\ElasticsuiteCore\Search\Request\Query\QueryFactory;
-use Smile\ElasticsuiteCore\Search\Request\QueryInterface;
-
 /**
  * Special "is_new" attribute class.
  *
@@ -13,17 +9,17 @@ use Smile\ElasticsuiteCore\Search\Request\QueryInterface;
  * @package  Smile\ElasticsuiteCatalogRule
  * @author   Romain Ruaud <romain.ruaud@smile.fr>
  */
-class IsNew implements SpecialAttributeInterface
+class IsNew implements \Smile\ElasticsuiteCatalogRule\Api\Rule\Condition\Product\SpecialAttributeInterface
 {
     /**
      * @var \Smile\ElasticsuiteCore\Search\Request\Query\QueryFactory
      */
-    private $queryFactory;
+    protected $queryFactory;
 
     /**
      * @var \Magento\Config\Model\Config\Source\Yesno
      */
-    private $booleanSource;
+    protected $booleanSource;
 
     /**
      * HasImage constructor.
@@ -31,8 +27,10 @@ class IsNew implements SpecialAttributeInterface
      * @param \Smile\ElasticsuiteCore\Search\Request\Query\QueryFactory $queryFactory  Query Factory
      * @param \Magento\Config\Model\Config\Source\Yesno                 $booleanSource Boolean Source
      */
-    public function __construct(QueryFactory $queryFactory, \Magento\Config\Model\Config\Source\Yesno $booleanSource)
-    {
+    public function __construct(
+        \Smile\ElasticsuiteCore\Search\Request\Query\QueryFactory $queryFactory,
+        \Magento\Config\Model\Config\Source\Yesno $booleanSource
+    ) {
         $this->queryFactory  = $queryFactory;
         $this->booleanSource = $booleanSource;
     }
@@ -55,34 +53,40 @@ class IsNew implements SpecialAttributeInterface
         $clauses = [];
 
         $newFromDateEarlier = $this->queryFactory->create(
-            QueryInterface::TYPE_RANGE,
+            \Smile\ElasticsuiteCore\Search\Request\QueryInterface::TYPE_RANGE,
             ['field' => 'news_from_date', 'bounds' => ['lte' => $now]]
         );
 
         $newsToDateLater = $this->queryFactory->create(
-            QueryInterface::TYPE_RANGE,
+            \Smile\ElasticsuiteCore\Search\Request\QueryInterface::TYPE_RANGE,
             ['field' => 'news_to_date', 'bounds' => ['gte' => $now]]
         );
 
-        $missingNewsFromDate = $this->queryFactory->create(QueryInterface::TYPE_MISSING, ['field' => 'news_from_date']);
-        $missingNewsToDate   = $this->queryFactory->create(QueryInterface::TYPE_MISSING, ['field' => 'news_to_date']);
+        $missingNewsFromDate = $this->queryFactory->create(
+            \Smile\ElasticsuiteCore\Search\Request\QueryInterface::TYPE_MISSING,
+            ['field' => 'news_from_date']
+        );
+        $missingNewsToDate   = $this->queryFactory->create(
+            \Smile\ElasticsuiteCore\Search\Request\QueryInterface::TYPE_MISSING,
+            ['field' => 'news_to_date']
+        );
 
         $clauses[] = $this->queryFactory->create(
-            QueryInterface::TYPE_BOOL,
+            \Smile\ElasticsuiteCore\Search\Request\QueryInterface::TYPE_BOOL,
             ['must' => [$newFromDateEarlier, $missingNewsToDate]]
         );
 
         $clauses[] = $this->queryFactory->create(
-            QueryInterface::TYPE_BOOL,
+            \Smile\ElasticsuiteCore\Search\Request\QueryInterface::TYPE_BOOL,
             ['must' => [$missingNewsFromDate, $newsToDateLater]]
         );
 
         $clauses[] = $this->queryFactory->create(
-            QueryInterface::TYPE_BOOL,
+            \Smile\ElasticsuiteCore\Search\Request\QueryInterface::TYPE_BOOL,
             ['must' => [$newFromDateEarlier, $newsToDateLater]]
         );
 
-        return $this->queryFactory->create(QueryInterface::TYPE_BOOL, ['should' => $clauses]);
+        return $this->queryFactory->create(\Smile\ElasticsuiteCore\Search\Request\QueryInterface::TYPE_BOOL, ['should' => $clauses]);
     }
 
     /**

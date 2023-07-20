@@ -28,8 +28,7 @@ class InjectSuggestedTermsAsSearchPhrase
         \Smile\ElasticsuiteCore\Model\Autocomplete\Terms\DataProvider $queryTermsDataProvider,
         \MageSuite\ElasticSuiteAddons\Helper\Configuration $configuration,
         \Magento\Framework\Search\SearchEngineInterface $search
-    )
-    {
+    ) {
         $this->queryTermsDataProvider = $queryTermsDataProvider;
         $this->configuration = $configuration;
         $this->search = $search;
@@ -47,8 +46,7 @@ class InjectSuggestedTermsAsSearchPhrase
         $filters = [],
         $queryFilters = [],
         $facets = []
-    )
-    {
+    ) {
         $result = $proceed(
             $storeId,
             $containerName,
@@ -61,11 +59,11 @@ class InjectSuggestedTermsAsSearchPhrase
             $facets
         );
 
-        if($query === null) {
+        if ($query === null) {
             return $result;
         }
 
-        if($containerName !== 'quick_search_container') {
+        if ($containerName !== 'quick_search_container') {
             return $result;
         }
 
@@ -94,7 +92,8 @@ class InjectSuggestedTermsAsSearchPhrase
         );
     }
 
-    protected function getSearchQueryBasedOnSuggestedPhrases() {
+    protected function getSearchQueryBasedOnSuggestedPhrases()
+    {
         $terms = $this->queryTermsDataProvider->getItems();
 
         $newQuery = [];
@@ -112,11 +111,11 @@ class InjectSuggestedTermsAsSearchPhrase
      */
     protected function getResultsCountForOriginalQuery($query, $result)
     {
-        if(is_array($query)) {
+        if (is_array($query)) {
             $query = implode(' ', $query);
         }
 
-        if(!isset($this->resultsCountCache[$query])) {
+        if (!isset($this->resultsCountCache[$query])) {
             $this->resultsCountCache[$query] = $this->search
                 ->search($result)
                 ->count();
@@ -132,20 +131,18 @@ class InjectSuggestedTermsAsSearchPhrase
      */
     protected function queryInjectionShouldHappen($result, $originalQueryResultsCount)
     {
-        if($this->configuration->shouldAlwaysInjectPhrases()) {
+        if ($this->configuration->shouldAlwaysInjectPhrases()) {
             return true;
         }
 
-        if(
-            $result->isSpellchecked()
+        if ($result->isSpellchecked()
             &&
             $this->configuration->isInjectingSuggestedPhrasesWhenNoResultsAreFoundEnabled()
-        )
-        {
+        ) {
             return true;
         }
 
-        if($originalQueryResultsCount <= $this->configuration->getMaximumAmountOfProductsThatTriggerPhraseInjection()) {
+        if ($originalQueryResultsCount <= $this->configuration->getMaximumAmountOfProductsThatTriggerPhraseInjection()) {
             return true;
         }
 

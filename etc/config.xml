@@ -18,5 +18,16 @@
                 <enable_virtual_category_router>0</enable_virtual_category_router>
             </routing_settings>
         </smile_elasticsuite_misc_settings>
+        <smile_elasticsuite_optimization_configuration>
+            <general>
+                <is_enabled>1</is_enabled>
+                <query_words_limit>5</query_words_limit>
+                <minimum_should_match>75</minimum_should_match>
+                <skip_short_numerical_terms>1</skip_short_numerical_terms>
+                <minimum_numerical_terms_lenght>5</minimum_numerical_terms_lenght>
+                <tie_breaker>0.1</tie_breaker>
+                <cut_off_frequency>0.15</cut_off_frequency>
+            </general>
+        </smile_elasticsuite_optimization_configuration>
     </default>
 </config>

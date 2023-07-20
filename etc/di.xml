@@ -30,4 +30,23 @@
     <type name="Smile\ElasticsuiteVirtualCategory\Controller\Router">
         <plugin name="disable_virtual_category_router" type="MageSuite\ElasticSuiteAddons\Plugin\Smile\ElasticsuiteVirtualCategory\Controller\Router\DisableElasticSearchVirtualCategoryRouter"/>
     </type>
+
+    <type name="Smile\ElasticsuiteCore\Search\Request\Query\Fulltext\QueryBuilder">
+        <plugin name="queryRewriteSynonyms" sortOrder="10" />
+        <plugin name="rewrite_query_if_search_query_text_is_too_long"
+                type="MageSuite\ElasticSuiteAddons\Plugin\ElasticsuiteThesaurus\RewriteQueryIfSearchQueryTextIsTooLong"
+                sortOrder="10" />
+    </type>
+
+    <type name="Smile\ElasticsuiteThesaurus\Config\ThesaurusConfig">
+        <plugin name="disable_synonym_search_for_long_query"
+                type="MageSuite\ElasticSuiteAddons\Plugin\ElasticsuiteThesaurus\Config\DisableSynonymSearchForLongQueryText" sortOrder="10" />
+        <plugin name="disable_expansion_search_for_long_query"
+                type="MageSuite\ElasticSuiteAddons\Plugin\ElasticsuiteThesaurus\Config\DisableExpansionSearchForLongQueryText" sortOrder="20" />
+    </type>
+    <type name="MageSuite\Autocomplete\Helper\Configuration">
+        <plugin name="disable_expansion_search_for_long_query"
+                type="MageSuite\ElasticSuiteAddons\Plugin\Autocomplete\Helper\Configuration\DisableGenerationOfTermsForLongQueryText" sortOrder="20" />
+    </type>
+
 </config>

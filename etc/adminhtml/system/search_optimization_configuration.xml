@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <section id="smile_elasticsuite_optimization_configuration" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+        <class>separator-top</class>
+        <label>Search Optimization Configuration</label>
+        <tab>magesuite</tab>
+        <resource>MageSuite_ElasticSuiteAddons::config_smile_elasticsuite_optimization_configuration</resource>
+        <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>General</label>
+            <field id="is_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <label>Is Enabled</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <comment>
+                    <![CDATA[By enabling this option you can disable expansion search and generation of synonyms when query text is too long.
+                        ]]>
+                </comment>
+            </field>
+            <field id="query_words_limit" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <label>Query Words Limit</label>
+                <validate>validate-digits validate-zero-or-greater</validate>
+                <comment>
+                    <![CDATA[
+                        When search query text is longer than the above value generation of synonyms and expansion search will be disabled.
+                        <br/>
+                        The original query will be replaced with a less restrictive one to display any approximate results instead of none.
+                        ]]>
+                </comment>
+                <depends>
+                    <field id="is_enabled">1</field>
+                </depends>
+            </field>
+            <field id="minimum_should_match" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <label>Minimum should match</label>
+                <validate>validate-digits validate-zero-or-greater</validate>
+                <comment>
+                    <![CDATA[
+                        A percentage that <strong>describes how many % of the query should match</strong> for an item to be returned in the response
+                        ]]>
+                </comment>
+                <depends>
+                    <field id="is_enabled">1</field>
+                </depends>
+            </field>
+            <field id="skip_short_numerical_terms" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <label>Ship short numerical terms</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <comment>When enabled short numerical terms will be skipped.</comment>
+                <depends>
+                    <field id="is_enabled">1</field>
+                </depends>
+            </field>
+            <field id="minimum_numerical_terms_lenght" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <label>Character limit in numerical terms</label>
+                <validate>validate-digits validate-zero-or-greater</validate>
+                <comment>
+                    <![CDATA[
+                        If numerical term is shorter than the above value it will be skipped
+                        ]]>
+                </comment>
+                <depends>
+                    <field id="is_enabled">1</field>
+                    <field id="skip_short_numerical_terms">1</field>
+                </depends>
+            </field>
+            <field id="tie_breaker" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <label>Tie Breaker</label>
+                <validate>validate-digit validate-zero-or-greater</validate>
+                <comment>
+                    <![CDATA[
+                        When set to 1, a document score will be the sum of all its field scores.
+                        <br/>
+                        When set to an arbitrary value of 0.3, the document score will be the sum of its highest scored field and the sum of scores of all remaining fields multiplied by 0.3.
+                        ]]>
+                </comment>
+                <depends>
+                    <field id="is_enabled">1</field>
+                </depends>
+            </field>
+            <field id="cut_off_frequency" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <label>Cut Of Frequency</label>
+                <validate>validate-number validate-zero-or-greater</validate>
+                <comment>
+                    <![CDATA[
+                        Cutoff Frequency allows specifying an arbitrary frequency where high frequency terms (above the cutoff) are not scored for each query. This is used as an automatic stopwords detection based on their frequency in index.
+                        ]]>
+                </comment>
+                <depends>
+                    <field id="is_enabled">1</field>
+                </depends>
+            </field>
+        </group>
+    </section>
+</include>

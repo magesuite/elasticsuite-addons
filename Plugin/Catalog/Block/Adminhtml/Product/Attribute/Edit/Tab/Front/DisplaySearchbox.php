@@ -18,7 +18,7 @@ class DisplaySearchbox
     {
         $fieldset = $this->getElasticSuiteFieldset($subject, $form);
 
-        if(empty($fieldset)){
+        if (empty($fieldset)) {
             return $this;
         }
 
@@ -31,7 +31,7 @@ class DisplaySearchbox
     {
         $fieldset = $form->getElement(self::ELASTICSUITE_FIELDSET);
 
-        if(!$fieldset){
+        if (!$fieldset) {
             return null;
         }
 

@@ -47,7 +47,12 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
     public function testItInjectsWhenThereAreLowAmountOfResultsForOriginalPhrase()
     {
         $products = $this->search('polo');
-        $skus = array_map(function($product) { return $product->getSku(); }, $products);
+        $skus = array_map(
+            function ($product) {
+                return $product->getSku();
+            },
+            $products
+        );
 
         $this->assertCount(3, $products);
         $this->assertContains('poloshirt', $skus);
@@ -63,7 +68,12 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
     public function testItDoesNotInjectWhenThereAreEnoughOriginalResults()
     {
         $products = $this->search('polo');
-        $skus = array_map(function($product) { return $product->getSku(); }, $products);
+        $skus = array_map(
+            function ($product) {
+                return $product->getSku();
+            },
+            $products
+        );
 
         $this->assertCount(2, $products);
         $this->assertNotContains('poloshirt', $skus);
@@ -80,7 +90,12 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
     public function testItAlwaysInjectsWhenSettingIsEnabled()
     {
         $products = $this->search('polo');
-        $skus = array_map(function($product) { return $product->getSku(); }, $products);
+        $skus = array_map(
+            function ($product) {
+                return $product->getSku();
+            },
+            $products
+        );
 
         $this->assertCount(3, $products);
         $this->assertContains('poloshirt', $skus);
@@ -98,7 +113,12 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
     public function testItInjectsWhenNoResultsWereFound()
     {
         $products = $this->search('polo');
-        $skus = array_map(function($product) { return $product->getSku(); }, $products);
+        $skus = array_map(
+            function ($product) {
+                return $product->getSku();
+            },
+            $products
+        );
 
         $this->assertCount(1, $products);
         $this->assertContains('poloshirt', $skus);
@@ -130,11 +150,13 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
         return $products;
     }
 
-    public static function loadProductsForSearch() {
+    public static function loadProductsForSearch()
+    {
         include __DIR__.'/../../../../../../_files/products_search.php';
     }
 
-    public static function loadProductsWithPoloshirtOnly() {
+    public static function loadProductsWithPoloshirtOnly()
+    {
         include __DIR__.'/../../../../../../_files/products_search_only_poloshirt.php';
     }
 }

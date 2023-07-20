@@ -32,7 +32,7 @@ class SliderDisplayMode
     {
         $fieldset = $this->getDisplayFieldset($subject, $form);
 
-        if(empty($fieldset)){
+        if (empty($fieldset)) {
             return $this;
         }
 
@@ -45,12 +45,13 @@ class SliderDisplayMode
     {
         $fieldset = $form->getElement(self::ELASTICSUITE_DISPLAY_FIELDSET);
 
-        if($fieldset){
+        if ($fieldset) {
             return $fieldset;
         }
 
         $attribute = $this->coreRegistry->registry('entity_attribute');
-        if ($attribute->getBackendType() != 'decimal' and $attribute->getFrontendClass() != 'validate-number') {
+
+        if ($attribute->getBackendType() != 'decimal' && $attribute->getFrontendClass() != 'validate-number') {
             return null;
         }
 

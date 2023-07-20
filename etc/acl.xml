@@ -7,6 +7,7 @@
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
                             <resource id="MageSuite_ElasticSuiteAddons::config_catalog_filters" title="Catalog Filters Display Configuration"/>
+                            <resource id="MageSuite_ElasticSuiteAddons::config_smile_elasticsuite_optimization_configuration" title="Search Optimization Configuration"/>
                         </resource>
                     </resource>
                 </resource>
