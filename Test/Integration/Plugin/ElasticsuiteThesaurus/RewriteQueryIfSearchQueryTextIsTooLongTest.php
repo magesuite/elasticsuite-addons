@@ -64,6 +64,7 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
     }
 
     /**
+     * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/is_enabled 1
      * @magentoConfigFixture current_store smile_elasticsuite_autocomplete_settings/term_autocomplete/generate_terms 1
      * @dataProvider getSearchQueryTexts
      */
