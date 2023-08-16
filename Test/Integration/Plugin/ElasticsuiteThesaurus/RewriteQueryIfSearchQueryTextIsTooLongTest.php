@@ -14,14 +14,14 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
     protected const QUERY_TEXT_TYPE_LONG = 'long query';
     protected const QUERY_TEXT_TYPE_SHORT = 'short query';
 
-    protected ?\Magento\Framework\ObjectManagerInterface $objectManager;
-    protected ?\Magento\Framework\App\RequestInterface $request;
+    protected ?\Smile\ElasticsuiteCore\Api\Cluster\ClusterInfoInterface $clusterInfo;
     protected ?\MageSuite\ElasticSuiteAddons\Service\RewriteQuery $rewriteQuerySerice;
     protected ?\Smile\ElasticsuiteCore\Search\Request\Query\QueryFactory $queryFactory;
 
     protected function setUp(): void
     {
         $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
+        $this->clusterInfo = $this->objectManager->create(\Smile\ElasticsuiteCore\Api\Cluster\ClusterInfoInterface::class);
         $this->request = $this->objectManager->create(\Magento\Framework\App\RequestInterface::class);
         $this->queryFactory = $this->objectManager->create(\Smile\ElasticsuiteCore\Search\Request\Query\QueryFactory::class);
 
@@ -156,8 +156,26 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
         \Smile\ElasticsuiteCore\Search\Request\QueryInterface $query
     ) {
         $this->assertEquals('75%', $query->getMinimumShouldMatch());
-        $this->assertEquals(0.3, $query->getTieBreaker());
-        $this->assertEquals(0.15, $query->getCutOffFrequency());
+
+        $this->assertEquals($this->getExpectedCutoffFrequency(), $query->getCutOffFrequency());
+    }
+
+    protected function getExpectedCutoffFrequency()
+    {
+        $result = 0.15;
+
+        if ($this->clusterInfo->getServerDistribution() === \Smile\ElasticsuiteCore\Api\Cluster\ClusterInfoInterface::DISTRO_ES) {
+            if (version_compare($this->clusterInfo->getServerVersion(), "8.0.0") >= 0) {
+                $result = 0; // Will be evaluated as false and discarded by the Query Builder.
+            }
+        } elseif ($this->clusterInfo->getServerDistribution() === \Smile\ElasticsuiteCore\Api\Cluster\ClusterInfoInterface::DISTRO_OS) {
+            if (version_compare($$this->clusterInfo->getServerVersion(), "2.0.0") >= 0) {
+                $result = 0; // Will be evaluated as false and discarded by the Query Builder.
+            }
+        }
+
+        return $result;
+
     }
 
     public function getSearchQueryTexts(): array
@@ -168,7 +186,7 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
                 'type' => self::QUERY_TEXT_TYPE_LONG
             ],
             self::QUERY_TEXT_TYPE_SHORT => [
-                'search query 12345 6789',
+                'query_text' => 'search query 12345 6789',
                 'type' => self::QUERY_TEXT_TYPE_SHORT
             ]
         ];
