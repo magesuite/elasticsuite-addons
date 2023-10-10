@@ -1,7 +1,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:MageSuite_Changelog:etc/changelog.xsd">
-    <module id="Creativestyle_CustomizationPack2GoAheadworks" name="Creativestyle_CustomizationPack2GoAheadworks"
-            description="Customization module for Aheadworks in Pack2Go"
+    <module id="MageSuite_ElasticSuiteAddons" name="MageSuite_ElasticSuiteAddons"
+            description="Customization module for ElasticSuiteAddons"
             url="https://gitlab.creativestyle.pl/pack2go/customization-pack2go-aheadworks">
         <changelog>
             <tag version="1.5.2" date="2023-06-14">
