@@ -11,6 +11,12 @@
                     <ticket_id>P2G-1202</ticket_id>
                 </entry>
             </tag>
+            <tag version="1.5.4" date="2023-06-14">
+                <entry>
+                    <type>FIX</type>
+                    <overview>PHP 8.2 compatibility</overview>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>

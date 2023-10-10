@@ -14,7 +14,9 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
     protected const QUERY_TEXT_TYPE_LONG = 'long query';
     protected const QUERY_TEXT_TYPE_SHORT = 'short query';
 
+    protected ?\Magento\Framework\ObjectManagerInterface $objectManager;
     protected ?\Smile\ElasticsuiteCore\Api\Cluster\ClusterInfoInterface $clusterInfo;
+    protected ?\Magento\Framework\App\RequestInterface $request;
     protected ?\MageSuite\ElasticSuiteAddons\Service\RewriteQuery $rewriteQuerySerice;
     protected ?\Smile\ElasticsuiteCore\Search\Request\Query\QueryFactory $queryFactory;
 
