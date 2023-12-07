@@ -1,22 +1,23 @@
 <?php
+
 declare(strict_types=1);
 
 namespace MageSuite\ElasticSuiteAddons\Cron;
 
 class RemoveGhostIndices
 {
-    /**
-     * @var \MageSuite\ElasticSuiteAddons\Model\RemoveGhostIndices
-     */
-    protected $removeGhostIndices;
+    protected \MageSuite\ElasticSuiteAddons\Service\GhostBuster $ghostBuster;
 
-    public function __construct(\MageSuite\ElasticSuiteAddons\Model\RemoveGhostIndices $removeGhostIndices)
+    public function __construct(\MageSuite\ElasticSuiteAddons\Service\GhostBuster $ghostBuster)
     {
-        $this->removeGhostIndices = $removeGhostIndices;
+        $this->ghostBuster = $ghostBuster;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function execute()
     {
-        $this->removeGhostIndices->execute();
+        $this->ghostBuster->removeGhostIndices();
     }
 }
