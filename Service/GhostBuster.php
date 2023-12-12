@@ -28,7 +28,7 @@ class GhostBuster
         }
     }
 
-    protected function isIndexGhost(string $name, string $alias): bool
+    protected function isIndexGhost(string $name, ?string $alias): bool
     {
         $indexStats = $this->indexStatsProvider->indexStats($name, $alias);
         $status = $indexStats['index_status'] ?? null;
