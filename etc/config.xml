@@ -14,6 +14,9 @@
             </catalogsearch>
         </smile_elasticsuite_catalogsearch_settings>
         <smile_elasticsuite_misc_settings>
+            <ghost_indices>
+                <cleanup_schedule>30 17 * * *</cleanup_schedule>
+            </ghost_indices>
             <routing_settings>
                 <enable_virtual_category_router>0</enable_virtual_category_router>
             </routing_settings>
