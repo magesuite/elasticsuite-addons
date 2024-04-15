@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
         <job name="elasticsuite_remove_ghost_indices" instance="MageSuite\ElasticSuiteAddons\Cron\RemoveGhostIndices" method="execute">
-            <schedule>30 0 * * *</schedule>
+            <config_path>smile_elasticsuite_misc_settings/ghost_indices/cleanup_schedule</config_path>
         </job>
     </group>
 </config>

@@ -13,7 +13,5 @@
         <include path="MageSuite_ElasticSuiteAddons::system/catalog_search_configuration.xml"/>
         <include path="MageSuite_ElasticSuiteAddons::system/routing_settings.xml"/>
         <include path="MageSuite_ElasticSuiteAddons::system/search_optimization_configuration.xml"/>
-
-
     </system>
 </config>
