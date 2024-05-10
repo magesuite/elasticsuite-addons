@@ -171,7 +171,7 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
                 $result = 0; // Will be evaluated as false and discarded by the Query Builder.
             }
         } elseif ($this->clusterInfo->getServerDistribution() === \Smile\ElasticsuiteCore\Api\Cluster\ClusterInfoInterface::DISTRO_OS) {
-            if (version_compare($$this->clusterInfo->getServerVersion(), "2.0.0") >= 0) {
+            if (version_compare($this->clusterInfo->getServerVersion(), "2.0.0") >= 0) {
                 $result = 0; // Will be evaluated as false and discarded by the Query Builder.
             }
         }
