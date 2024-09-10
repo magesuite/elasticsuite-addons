@@ -42,7 +42,7 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
      * @magentoAppArea frontend
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
-     * @magentoDataFixture loadProductsForSearch
+     * @magentoDataFixture MageSuite_ElasticSuiteAddons::Test/Integration/_files/products_search.php
      */
     public function testItInjectsWhenThereAreLowAmountOfResultsForOriginalPhrase()
     {
@@ -62,7 +62,7 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
      * @magentoAppArea frontend
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
-     * @magentoDataFixture loadProductsForSearch
+     * @magentoDataFixture MageSuite_ElasticSuiteAddons::Test/Integration/_files/products_search.php
      * @magentoConfigFixture current_store smile_elasticsuite_catalogsearch_settings/catalogsearch/maximum_amount_of_products_that_trigger_phrase_injection 1
      */
     public function testItDoesNotInjectWhenThereAreEnoughOriginalResults()
@@ -83,7 +83,7 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
      * @magentoAppArea frontend
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
-     * @magentoDataFixture loadProductsForSearch
+     * @magentoDataFixture MageSuite_ElasticSuiteAddons::Test/Integration/_files/products_search.php
      * @magentoConfigFixture current_store smile_elasticsuite_catalogsearch_settings/catalogsearch/maximum_amount_of_products_that_trigger_phrase_injection 1
      * @magentoConfigFixture current_store smile_elasticsuite_catalogsearch_settings/catalogsearch/always_inject_suggested_phrases 1
      */
@@ -105,13 +105,14 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
      * @magentoAppArea frontend
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
-     * @magentoDataFixture loadProductsWithPoloshirtOnly
+     * @magentoDataFixture MageSuite_ElasticSuiteAddons::Test/Integration/_files/products_search_only_poloshirt.php
      * @magentoConfigFixture current_store smile_elasticsuite_catalogsearch_settings/catalogsearch/maximum_amount_of_products_that_trigger_phrase_injection 1
      * @magentoConfigFixture current_store smile_elasticsuite_catalogsearch_settings/catalogsearch/always_inject_suggested_phrases 0
      * @magentoConfigFixture current_store smile_elasticsuite_catalogsearch_settings/catalogsearch/inject_suggested_phrases_when_no_results_are_found 1
      */
     public function testItInjectsWhenNoResultsWereFound()
     {
+        $this->indexer->load('catalogsearch_fulltext')->reindexAll();
         $products = $this->search('polo');
         $skus = array_map(
             function ($product) {
@@ -148,15 +149,5 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
         }
 
         return $products;
-    }
-
-    public static function loadProductsForSearch()
-    {
-        include __DIR__.'/../../../../../../_files/products_search.php';
-    }
-
-    public static function loadProductsWithPoloshirtOnly()
-    {
-        include __DIR__.'/../../../../../../_files/products_search_only_poloshirt.php';
     }
 }
