@@ -2,10 +2,6 @@
 
 include BP.'/dev/tests/integration/testsuite/Magento/Catalog/_files/category.php';
 
-/** @var \Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement */
-$categoryLinkManagement = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-    ->create(\Magento\Catalog\Api\CategoryLinkManagementInterface::class);
-
 foreach ($products as $data) {
     /** @var $product \Magento\Catalog\Model\Product */
     $product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Catalog\Model\Product::class);
@@ -21,15 +17,8 @@ foreach ($products as $data) {
         ->setVisibility(\Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH)
         ->setStatus(\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
         ->setStockData(['use_config_manage_stock' => 0])
+        ->setCategoryIds([333])
         ->save();
-
+    $product->reindex();
     $product->priceReindexCallback();
-
-    $categoryLinkManagement->assignProductToCategories($data['sku'], [333]);
 }
-
-$indexer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-    ->create(\Magento\Framework\Indexer\IndexerInterface::class);
-
-$indexer->load('catalogsearch_fulltext')
-    ->reindexAll();
