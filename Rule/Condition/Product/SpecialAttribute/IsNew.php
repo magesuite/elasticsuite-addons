@@ -46,7 +46,7 @@ class IsNew implements \Smile\ElasticsuiteCatalogRule\Api\Rule\Condition\Product
     /**
      * {@inheritdoc}
      */
-    public function getSearchQuery(\Smile\ElasticsuiteCatalogRule\Model\Rule\Condition\Product $condition = null)
+    public function getSearchQuery(\Smile\ElasticsuiteCatalogRule\Model\Rule\Condition\Product $condition)
     {
         $now = (new \DateTime())->format(\Magento\Framework\Stdlib\DateTime::DATETIME_PHP_FORMAT);
 
