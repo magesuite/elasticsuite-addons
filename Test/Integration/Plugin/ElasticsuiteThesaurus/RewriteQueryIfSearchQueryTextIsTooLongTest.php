@@ -11,8 +11,8 @@ namespace MageSuite\ElasticSuiteAddons\Test\Integration\Plugin\ElasticsuiteThesa
  */
 class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\TestCase
 {
-    public const QUERY_TEXT_TYPE_LONG = 'long query';
-    public const QUERY_TEXT_TYPE_SHORT = 'short query';
+    protected const QUERY_TEXT_TYPE_LONG = 'long query';
+    protected const QUERY_TEXT_TYPE_SHORT = 'short query';
 
     protected ?\Magento\Framework\ObjectManagerInterface $objectManager;
     protected ?\Smile\ElasticsuiteCore\Api\Cluster\ClusterInfoInterface $clusterInfo;
@@ -70,7 +70,7 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
      * @magentoConfigFixture current_store smile_elasticsuite_autocomplete_settings/term_autocomplete/generate_terms 1
      * @dataProvider getSearchQueryTexts
      */
-    public function testDisableGenerateTerms(string $queryText, string $queryType): void
+    public function testDisableGenerateTerms(string $queryText, string $queryType)
     {
         $this->request->setParams([
             'q' => $queryText
@@ -180,7 +180,7 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
 
     }
 
-    public static function getSearchQueryTexts(): array
+    public function getSearchQueryTexts(): array
     {
         return [
             self::QUERY_TEXT_TYPE_LONG => [
