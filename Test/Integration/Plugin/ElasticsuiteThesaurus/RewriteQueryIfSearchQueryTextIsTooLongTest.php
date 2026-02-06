@@ -126,10 +126,8 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
         $this->assertRewritedQuery(false, $query);
     }
 
-    protected function assertRewritedQuery(
-        bool $rewrited,
-        \Smile\ElasticsuiteCore\Search\Request\QueryInterface $query
-    ) {
+    protected function assertRewritedQuery(bool $rewrited, \Smile\ElasticsuiteCore\Search\Request\QueryInterface $query)
+    {
         if ($rewrited) {
             $this->assertEquals($rewrited, $query->getMinimumShouldMatch() === '75%');
         } else {
@@ -137,26 +135,18 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
         }
     }
 
-    protected function assertRemoveShortNumericalTerms( //phpcs:ignore
-        bool $skipped,
-        \Smile\ElasticsuiteCore\Search\Request\QueryInterface $query,
-        int $longNumericalTerm,
-        int $shortNumericalTerm
-    ) {
-        $this->assertStringContainsString((string) $longNumericalTerm, $query->getQueryText());
+    protected function assertRemoveShortNumericalTerms(bool $skipped, \Smile\ElasticsuiteCore\Search\Request\QueryInterface $query, int $longNumericalTerm, int $shortNumericalTerm) //phpcs:ignore
+    {
+        $this->assertStringContainsString((string)$longNumericalTerm, $query->getQueryText());
         if ($skipped) {
-            $this->assertStringNotContainsString((string) $shortNumericalTerm, $query->getQueryText());
+            $this->assertStringNotContainsString((string)$shortNumericalTerm, $query->getQueryText());
         } else {
-            $this->assertStringContainsString((string) $shortNumericalTerm, $query->getQueryText());
+            $this->assertStringContainsString((string)$shortNumericalTerm, $query->getQueryText());
         }
     }
 
-    /**
-     * @param \Smile\ElasticsuiteCore\Search\Request\QueryInterface $query
-     */
-    protected function assertConfiguration(
-        \Smile\ElasticsuiteCore\Search\Request\QueryInterface $query
-    ) {
+    protected function assertConfiguration(\Smile\ElasticsuiteCore\Search\Request\QueryInterface $query)
+    {
         $this->assertEquals('75%', $query->getMinimumShouldMatch());
 
         $this->assertEquals($this->getExpectedCutoffFrequency(), $query->getCutOffFrequency());
@@ -180,7 +170,7 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
 
     }
 
-    public function getSearchQueryTexts(): array
+    public static function getSearchQueryTexts(): array
     {
         return [
             self::QUERY_TEXT_TYPE_LONG => [
