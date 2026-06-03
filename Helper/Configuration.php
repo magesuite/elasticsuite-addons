@@ -26,7 +26,7 @@ class Configuration
     {
         $config = $this->getConfig();
 
-        return (boolean)$config['always_inject_suggested_phrases'];
+        return (bool)$config['always_inject_suggested_phrases'];
     }
 
     public function getMaximumAmountOfProductsThatTriggerPhraseInjection()
@@ -40,7 +40,7 @@ class Configuration
     {
         $config = $this->getConfig();
 
-        return (boolean)$config['inject_suggested_phrases_when_no_results_are_found'];
+        return (bool)$config['inject_suggested_phrases_when_no_results_are_found'];
     }
 
     public function isVirtualCategoryRouterEnabled(): bool
