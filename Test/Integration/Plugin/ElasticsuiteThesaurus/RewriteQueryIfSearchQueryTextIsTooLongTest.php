@@ -44,8 +44,8 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/minimum_numerical_terms_lenght 0
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/tie_breaker 0.3
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/cut_off_frequency 0.15
-     * @dataProvider getSearchQueryTexts
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getSearchQueryTexts')]
     public function testEnabledAddon(string $queryText, string $queryType): void
     {
         $this->request->setParams([
@@ -68,8 +68,8 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
     /**
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/is_enabled 1
      * @magentoConfigFixture current_store smile_elasticsuite_autocomplete_settings/term_autocomplete/generate_terms 1
-     * @dataProvider getSearchQueryTexts
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getSearchQueryTexts')]
     public function testDisableGenerateTerms(string $queryText, string $queryType)
     {
         $this->request->setParams([
@@ -90,8 +90,8 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/minimum_numerical_terms_lenght 5
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/tie_breaker 0.3
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/cut_off_frequency 0.15
-     * @dataProvider getSearchQueryTexts
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getSearchQueryTexts')]
     public function testEnabledAddonAndSkipShortNumericalTerms(string $queryText, string $queryType): void
     {
         $this->request->setParam('q', $queryText);
@@ -116,8 +116,8 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/minimum_numerical_terms_lenght 5
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/tie_breaker 0.3
      * @magentoConfigFixture current_store smile_elasticsuite_optimization_configuration/general/cut_off_frequency 0.15
-     * @dataProvider getSearchQueryTexts
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getSearchQueryTexts')]
     public function testDisabledAddon(string $queryText, string $queryType): void
     {
         $query = $this->createQuery($queryText);
@@ -174,12 +174,12 @@ class RewriteQueryIfSearchQueryTextIsTooLongTest extends \PHPUnit\Framework\Test
     {
         return [
             self::QUERY_TEXT_TYPE_LONG => [
-                'query_text' => 'this is the real long search query 12345 6789',
-                'type' => self::QUERY_TEXT_TYPE_LONG
+                'queryText' => 'this is the real long search query 12345 6789',
+                'queryType' => self::QUERY_TEXT_TYPE_LONG
             ],
             self::QUERY_TEXT_TYPE_SHORT => [
-                'query_text' => 'search query 12345 6789',
-                'type' => self::QUERY_TEXT_TYPE_SHORT
+                'queryText' => 'search query 12345 6789',
+                'queryType' => self::QUERY_TEXT_TYPE_SHORT
             ]
         ];
     }
