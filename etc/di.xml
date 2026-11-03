@@ -61,4 +61,8 @@
         <plugin name="reduce_slider_count_by_options" type="MageSuite\ElasticSuiteAddons\Plugin\Smile\ElasticsuiteCatalog\Block\Navigation\Renderer\Slider\ReduceSliderCountByOptions" sortOrder="10"/>
     </type>
 
+    <type name="Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\AttributeData">
+        <plugin name="index_lowest_child_value_of_decimal_attributes" type="MageSuite\ElasticSuiteAddons\Plugin\Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\AttributeData\IndexLowestChildValueOfDecimalAttributes" sortOrder="10"/>
+    </type>
+
 </config>
