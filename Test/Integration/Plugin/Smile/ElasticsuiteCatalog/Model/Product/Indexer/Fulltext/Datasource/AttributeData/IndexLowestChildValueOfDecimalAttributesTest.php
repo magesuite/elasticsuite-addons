@@ -32,6 +32,7 @@ class IndexLowestChildValueOfDecimalAttributesTest extends \PHPUnit\Framework\Te
     protected const array CONFIGURABLE_PRODUCT_DATA = [
         '_options' => ['$configurable_attribute$'],
         '_links' => ['$first_child$', '$second_child$'],
+        'custom_attributes' => [['attribute_code' => self::DECIMAL_ATTRIBUTE_CODE, 'value' => 100]],
     ];
 
     protected ?\Magento\Framework\ObjectManagerInterface $objectManager;
@@ -54,7 +55,7 @@ class IndexLowestChildValueOfDecimalAttributesTest extends \PHPUnit\Framework\Te
         DataFixture(ProductFixture::class, self::SECOND_CHILD_DATA, 'second_child'),
         DataFixture(ConfigurableProductFixture::class, self::CONFIGURABLE_PRODUCT_DATA, 'configurable_product'),
     ]
-    public function testConfigurableProductIsIndexedWithLowestChildValue(): void
+    public function testConfigurableProductIsIndexedWithLowestChildValueInsteadOfItsOwnValue(): void
     {
         $this->assertSame([900.0], $this->getIndexedDecimalValues());
     }
@@ -74,7 +75,7 @@ class IndexLowestChildValueOfDecimalAttributesTest extends \PHPUnit\Framework\Te
         $indexedValues = $this->getIndexedDecimalValues();
         sort($indexedValues);
 
-        $this->assertSame([900.0, 1500.0], $indexedValues);
+        $this->assertSame([100.0, 900.0, 1500.0], $indexedValues);
     }
 
     protected function getIndexedDecimalValues(): array

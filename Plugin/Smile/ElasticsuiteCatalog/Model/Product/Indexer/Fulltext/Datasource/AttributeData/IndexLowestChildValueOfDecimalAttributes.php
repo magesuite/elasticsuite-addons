@@ -18,6 +18,6 @@ class IndexLowestChildValueOfDecimalAttributes
             return $result;
         }
 
-        return $this->lowestChildValueOfDecimalAttributes->applyToIndexData($result);
+        return $this->lowestChildValueOfDecimalAttributes->applyToIndexData($result, (int)$storeId);
     }
 }
