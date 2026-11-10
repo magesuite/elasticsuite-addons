@@ -67,7 +67,7 @@ class InjectSuggestedTermsAsSearchPhrase
             return $result;
         }
 
-        $originalQueryResultsCount = $this->getResultsCountForOriginalQuery($query, $result);
+        $originalQueryResultsCount = $this->getResultsCountForOriginalQuery($query, fn() => $proceed($storeId, $containerName, 0, 0, $query));
 
         if (!$this->queryInjectionShouldHappen($result, $originalQueryResultsCount)) {
             return $result;
@@ -105,40 +105,24 @@ class InjectSuggestedTermsAsSearchPhrase
         return $newQuery;
     }
 
-    /**
-     * @param $result
-     * @return int
-     */
-    protected function getResultsCountForOriginalQuery($query, $result)
+    protected function getResultsCountForOriginalQuery($query, callable $createUnfilteredRequest): int
     {
-        if (is_array($query)) {
-            $query = implode(' ', $query);
+        $cacheKey = is_array($query) ? implode(' ', $query) : $query;
+
+        if (!isset($this->resultsCountCache[$cacheKey])) {
+            $this->resultsCountCache[$cacheKey] = $this->search->search($createUnfilteredRequest())->count();
         }
 
-        if (!isset($this->resultsCountCache[$query])) {
-            $this->resultsCountCache[$query] = $this->search
-                ->search($result)
-                ->count();
-        }
-
-        return $this->resultsCountCache[$query];
+        return $this->resultsCountCache[$cacheKey];
     }
 
-    /**
-     * @param $result
-     * @param $originalQueryResultsCount
-     * @return bool
-     */
-    protected function queryInjectionShouldHappen($result, $originalQueryResultsCount)
+    protected function queryInjectionShouldHappen(\Smile\ElasticsuiteCore\Search\RequestInterface $result, int $originalQueryResultsCount): bool
     {
         if ($this->configuration->shouldAlwaysInjectPhrases()) {
             return true;
         }
 
-        if ($result->isSpellchecked()
-            &&
-            $this->configuration->isInjectingSuggestedPhrasesWhenNoResultsAreFoundEnabled()
-        ) {
+        if ($result->isSpellchecked() && $this->configuration->isInjectingSuggestedPhrasesWhenNoResultsAreFoundEnabled()) {
             return true;
         }
 
