@@ -15,10 +15,6 @@ class ReduceSliderCountByOptions
         string $result
     ): string {
 
-        if ($subject->getFilter()->getRequestVar() === \Magento\Catalog\Api\Data\ProductInterface::PRICE) {
-            return $result;
-        }
-
         try {
             $config = $this->serializer->unserialize($result);
             $config['maxItemsCount'] = $subject->getFilter()->getLayer()->getProductCollection()->getSize();

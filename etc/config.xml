@@ -4,6 +4,7 @@
         <catalog>
             <catalog_filters>
                 <min_options_qty>0</min_options_qty>
+                <index_lowest_child_value_of_decimal_attributes>0</index_lowest_child_value_of_decimal_attributes>
             </catalog_filters>
         </catalog>
         <smile_elasticsuite_catalogsearch_settings>

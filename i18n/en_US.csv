@@ -9,3 +9,5 @@ No,No
 "Inputs only","Inputs only"
 "Slider only","Slider only"
 "Only new products","Only new products"
+"Index lowest child value of decimal attributes","Index lowest child value of decimal attributes"
+"Indexes only the lowest value of child products for filterable decimal attributes other than price, the same way as price. Range slider then shows the correct product count while sliding, also for configurable products. A configurable product matches a range only when its lowest value is inside it. Requires a full reindex of catalogsearch_fulltext.","Indexes only the lowest value of child products for filterable decimal attributes other than price, the same way as price. Range slider then shows the correct product count while sliding, also for configurable products. A configurable product matches a range only when its lowest value is inside it. Requires a full reindex of catalogsearch_fulltext."

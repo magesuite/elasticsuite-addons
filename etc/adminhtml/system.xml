@@ -8,6 +8,12 @@
                     <frontend_class>cs-csfeature__logo</frontend_class>
                     <comment>Hide filters if filter options qty less then X</comment>
                 </field>
+                <field id="index_lowest_child_value_of_decimal_attributes" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Index lowest child value of decimal attributes</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>cs-csfeature__logo</frontend_class>
+                    <comment><![CDATA[Indexes only the lowest value of child products for filterable decimal attributes other than price, the same way as price. Range slider then shows the correct product count while sliding, also for configurable products. A configurable product matches a range only when its lowest value is inside it. Requires a full reindex of catalogsearch_fulltext.]]></comment>
+                </field>
             </group>
         </section>
         <include path="MageSuite_ElasticSuiteAddons::system/catalog_search_configuration.xml"/>
