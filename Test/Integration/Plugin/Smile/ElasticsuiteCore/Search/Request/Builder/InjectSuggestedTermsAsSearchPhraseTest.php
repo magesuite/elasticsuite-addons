@@ -125,7 +125,20 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('poloshirt', $skus);
     }
 
-    protected function search(string $text, $visibilityFilter = null): array
+    #[\Magento\TestFramework\Fixture\AppArea('frontend')]
+    #[\Magento\TestFramework\Fixture\DbIsolation(true)]
+    #[\Magento\TestFramework\Fixture\AppIsolation(true)]
+    #[\Magento\TestFramework\Fixture\DataFixture('MageSuite_ElasticSuiteAddons::Test/Integration/_files/products_search.php')]
+    #[\Magento\TestFramework\Fixture\Config('smile_elasticsuite_catalogsearch_settings/catalogsearch/maximum_amount_of_products_that_trigger_phrase_injection', 1, 'store', 'default')]
+    public function testItIgnoresLayeredNavigationFiltersWhenDecidingAboutInjection(): void
+    {
+        $products = $this->search('polo', null, ['entity_id' => [101, 103]]);
+        $skus = array_map(fn($product) => $product->getSku(), $products);
+
+        $this->assertSame(['polo'], $skus);
+    }
+
+    protected function search(string $text, $visibilityFilter = null, array $layeredNavigationFilters = []): array
     {
         $query = $this->queryFactory->get();
 
@@ -140,6 +153,10 @@ class InjectSuggestedTermsAsSearchPhraseTest extends \PHPUnit\Framework\TestCase
 
         if (null !== $visibilityFilter) {
             $collection->setVisibility($visibilityFilter);
+        }
+
+        foreach ($layeredNavigationFilters as $field => $condition) {
+            $collection->addFieldToFilter($field, $condition);
         }
 
         $products = [];
