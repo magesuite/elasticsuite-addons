@@ -70,12 +70,18 @@ class IndexLowestChildValueOfDecimalAttributesTest extends \PHPUnit\Framework\Te
         DataFixture(ProductFixture::class, self::SECOND_CHILD_DATA, 'second_child'),
         DataFixture(ConfigurableProductFixture::class, self::CONFIGURABLE_PRODUCT_DATA, 'configurable_product'),
     ]
-    public function testConfigurableProductKeepsAllChildValuesWhenDisabled(): void
+    public function testIndexDataIsLeftUnchangedWhenDisabled(): void
     {
-        $indexedValues = $this->getIndexedDecimalValues();
-        sort($indexedValues);
+        $storeId = (int)$this->objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)->getStore('default')->getId();
+        $configurableProductId = (int)$this->fixtures->get('configurable_product')->getId();
+        $childIds = [(int)$this->fixtures->get('first_child')->getId(), (int)$this->fixtures->get('second_child')->getId()];
+        $indexData = [$configurableProductId => ['children_ids' => $childIds, self::DECIMAL_ATTRIBUTE_CODE => [100.0]]];
+        $plugin = $this->objectManager->create(
+            \MageSuite\ElasticSuiteAddons\Plugin\Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\AttributeData\IndexLowestChildValueOfDecimalAttributes::class
+        );
+        $subject = $this->createMock(\Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\AttributeData::class);
 
-        $this->assertSame([100.0, 900.0, 1500.0], $indexedValues);
+        $this->assertSame($indexData, $plugin->afterAddData($subject, $indexData, $storeId));
     }
 
     protected function getIndexedDecimalValues(): array
