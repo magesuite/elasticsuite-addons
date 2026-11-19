@@ -20,7 +20,7 @@ class QueryTextHelper
             return false;
         }
 
-        $words = str_word_count(strip_tags((string) $this->request->getParam('q')));
+        $words = preg_match_all('/[\p{L}\p{M}\'\-]+/u', strip_tags((string) $this->request->getParam('q')));
 
         return $words > $config->getQueryWordsLimit() && $config->getQueryWordsLimit() > 0;
     }

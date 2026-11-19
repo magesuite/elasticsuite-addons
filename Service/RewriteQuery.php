@@ -89,6 +89,6 @@ class RewriteQuery
 
     protected function removeSpecialChars(string $queryText): string
     {
-        return preg_replace(['/[^a-zA-Z0-9\-\s]/i', '/\s\s/i'], '', $queryText);
+        return preg_replace(['/[^\p{L}\p{N}\-\s]/u', '/\s{2,}/u'], ['', ' '], $queryText);
     }
 }
